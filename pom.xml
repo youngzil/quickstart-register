@@ -21,7 +21,7 @@
 	</properties>
 
 	<modules>
-	<module>quickstart-register-zookeeper</module>
+	<module>quickstart-zookeeper</module>
 	</modules>
 
 </project>
