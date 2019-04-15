@@ -1,3 +1,115 @@
+Zookeeper的三种角色和三种状态
+
+三种角色：leader、follower、observer
+领导者（leader），负责进行投票的发起和决议，更新系统状态
+学习者（learner），包括跟随者（follower）和观察者（observer），follower用于接受客户端请求并想客户端返回结果，在选主过程中参与投票
+Observer可以接受客户端连接，将写请求转发给leader，但observer不参加投票过程，只同步leader的状态，observer的目的是为了扩展系统，提高读取速度
+客户端（client），请求发起方
+
+
+
+每个Server在工作过程中有三种状态：LOOKING、LEADING、FOLLOWING
+　　　　LOOKING：当前Server不知道leader是谁，正在搜寻
+　　　　LEADING：当前Server即为选举出来的leader
+　　　　FOLLOWING：leader已经选举出来，当前Server与之同步
+
+
+
+zookeeper中的每个节点称为一个znode，每个znode维持一个数据结构，其内容如下：
+1、Version number − 版本号，当和该znode节点关联的数据发生变化时，版本号会自增1。
+2、Action Control List (ACL) − 访问控制列表，znode的访问控制机制，它控制znode的所有读写操作。
+3、Timestamp − znode创建时的时间戳，精确到毫秒。
+4、Data length − znode节点存储数据的长度，最大1MB。
+
+
+
+读取操作：当Client向zookeeper发出读请求时，无论是Leader还是Follower，都直接返回查询结果。
+写操作：
+1、① 写入请求直接发送到leader节点：由Leader节点广播并返回结果给Client
+2、② 写入请求发送到Follower节点：由Follower节点转发给Leader节点，处理后Leader返回结果给Follower，原来的Follower返回写入成功消息给Client；
+
+
+
+znode有三种基本类型和两种组合类型：
+1、Persistence znode 持久znode
+2、Ephemeral znode − 临时znode
+3、Sequential znode − 序列znode
+
+组合：
+1、Persistence+Sequential znode，组合出的节点类型。
+2、Ephemeral+Sequential znode，组合出的节点类型。
+
+
+
+ZooKeeper 的 Watcher 机制主要包括客户端线程、客户端 WatchManager 和 ZooKeeper 服务器三部分
+1. 注册只能确保一次消费
+2. 客户端串行执行
+3. 轻量级设计：WatchedEvent 是 ZooKeeper 整个 Watcher 通知机制的最小通知单元，这个数据结构中只包含三部分的内容：通知状态、事件类型和节点路径。
+
+
+
+zookeeper的应用场景
+1、zookeeper实现配置中心：应用监听对应路径下的配置即可
+2、服务注册中心（服务发现）：服务提供者Provider向Zookeeper注册服务；服务消费者Consumer从zookeeper中查询服务和监听服务的变化，缓存服务信息到本地；调用远端的服务；
+3、zookeeper集群选主：使用zookeeper的ephemeral+sequence类型的znode可以实现集群的选主功能，跟分布式锁类似
+4、zookeeper实现分布式锁：创建一个ephemeral+sequence类型的znode，判断自己创建的znode是否序列最小，若是，则获的锁；若不是，在距离自己最近的前一个znode上设置一个watch，当获取到znode变更通知后
+5、zookeeper集群系统管理：
+
+
+
+
+选举原理：事务id号（zxid）：高32位的epoch +    低32位用于递增计数
+ZooKeeper 的非全新集群选主
+1、逻辑时钟小的选举结果被忽略，重新投票
+2、统一逻辑时钟后，数据 version 大的胜出
+3、数据 version 相同的情况下，server id 大的胜出
+
+
+
+
+
+Zookeeper学习参考
+https://www.jianshu.com/p/b48d50e1fcb1
+https://www.cnblogs.com/qingyunzong/p/8632995.html
+https://www.cnblogs.com/raphael5200/p/5285583.html
+https://blog.csdn.net/qiangcuo6087/article/details/79042035
+https://blog.csdn.net/wzk646795873/article/details/79706627
+
+
+
+
+
+Zookeeper动态扩容
+https://blog.csdn.net/levy_cui/article/details/70859355
+https://cloud.tencent.com/developer/article/1119410
+
+1、集群本来是单机模式，需要将它扩容成集群模式
+2、集群本来就有>2台机器在运行，只是将它扩容成更多的机器
+
+总的来说都是先部署新机器，再修改老机器配置文件重启。单机扩容集群短暂的停止服务，集群扩容集群是用户无感知的
+
+
+
+为了保证事务的顺序一致性，zookeeper采用了递增的事务id号（zxid）来标识事务。所有的提议（proposal）都在被提出的时候加上了zxid。实现中zxid是一个64位的数字，它高32位是epoch用来标识leader关系是否改变，每次一个leader被选出来，它都会有一个新的epoch，标识当前属于那个leader的统治时期。低32位用于递增计数。
+
+
+
+
+Jute是Zookeeper底层序列化组件，其用于Zookeeper进行网络数据传输和本地磁盘数据存储的序列化和反序列化工作。
+https://blog.csdn.net/lw_ghy/article/details/56301286
+https://my.oschina.net/u/2277632/blog/1540809
+
+
+
+
+
+读、写(更新)模式
+在ZooKeeper集群中，读可以从任意一个ZooKeeper Server读，这一点是保证ZooKeeper比较好的读性能的关键；写的请求会先Forwarder到Leader，然后由Leader来通过ZooKeeper中的原子广播协议，将请求广播给所有的Follower，Leader收到一半以上的写成功的Ack后，就认为该写成功了，就会将该写进行持久化，并告诉客户端写成功了。
+
+
+https://blog.csdn.net/xinguan1267/article/details/38422149
+
+
 Zookeeper
 http://jm.taobao.org/2013/10/07/zookeeper-faq/
 https://blog.csdn.net/u010185262/article/details/49910301
@@ -42,6 +154,7 @@ ZK本身不提供这样的功能，它仅仅提供了对单个IP的连接数的�
 
 
 12. zookeeper是否支持动态进行机器扩容？如果目前不支持，那么要如何扩容呢？
+已经支持了，总的来说都是先部署新机器，再修改老机器配置文件重启。单机扩容集群短暂的停止服务，集群扩容集群是用户无感知的
 截止2012-03-15，3.4.3版本的zookeeper，还不支持这个功能，在3.5.0版本开始，支持动态加机器了，期待下吧: https://issues.apache.org/jira/browse/ZOOKEEPER-107
 
 
@@ -50,5 +163,105 @@ Leader服务器会和每一个Follower/Observer服务器都建立TCP连接，同
 
 14.zookeeper是否会自动进行日志清理？如果进行日志清理？
 zk自己不会进行日志清理，需要运维人员进行日志清理，详细关于zk的日志清理，可以查看《ZooKeeper日志清理》
+
+
+zookeeper：Watcher、ZK状态，事件类型（一）
+zookeeper有watch事件，是一次性触发的，当watch监视的数据发生变化时，通知设置了该watch的client.即watcher.
+同样：其watcher是监听数据发送了某些变化，那就一定会有对应的事件类型和状态类型。
+	事件类型:(znode节点相关的)
+		 EventType:NodeCreated            //节点创建
+		 EventType:NodeDataChanged        //节点的数据变更
+		 EventType:NodeChildrentChanged   //子节点下的数据变更
+		 EventType:NodeDeleted
+	状态类型:(是跟客户端实例相关的)
+		 KeeperState:Disconneced        //连接失败
+ 		 KeeperState:SyncConnected	//连接成功	 
+		 KeeperState:AuthFailed         //认证失败
+		 KeeperState:Expired            //会话过期
+
+zookeeper的ACL(AUTH)
+ACL(Access Control List),Zookeeper作为一个分布式协调框架，其内部存储的都是一些关于分布式
+系统运行时状态的元数据，尤其是设计到一些分布式锁，Master选举和协调等应用场景。我们需要有
+效地保障Zookeeper中的数据安全，Zookeeper提供了三种模式。权限模式，授权对象，权限。
+权限模式：Scheme,开发人员最多使用的如下四种权限模式：
+	IP:ip模式通过ip地址粒度进行权限控制模式，例如配置了：192.168.110.135即表示权限控
+           制都是针对这个ip地址的，同时也支持按网段分配，比如：192.168.110.*
+	Digest:digest是最常用的权限控制模式，也更符合我们对权限控制的认识，其类似于
+               "username:password"形式的权限标识进行权限配置。ZK会对形成的权限标识先后进
+                行两次编码处理，粉笔是SHA-1加密算法和Base64编码。
+        World：World是一直最开放的权限控制模式。这种模式可以看做为特殊的Digest，他仅仅是
+               一个标识而已。
+        Super：超级用户模式，在超级用户模式下可以对ZK任意进行操作。
+
+权限对象：值得是权限赋予的用户或者是一个指定的实体，例如ip地址或机器等。在不同的模式下，
+授权对象是不同的。这种模式和权限对象一一对应。
+
+权限：权限就是指那些通过权限检测后可以被允许执行的操作，在ZK中，对数据的操作权限分为以下
+五大类：create,delete,read,write,admin
+
+参考：
+https://blog.csdn.net/qq_17089617/article/details/77928207
+https://blog.csdn.net/qq_17089617/article/details/77959377
+https://blog.csdn.net/pdw2009/article/details/73794525
+
+
+
+开始之前先介绍一些Zookeeper的权限。zookeeper支持的权限有5种分别是
+CREATE: 你可以创建子节点。
+READ: 你可以获取节点数据以及当前节点的子节点列表。
+WRITE: 你可以为节点设置数据。
+DELETE: 你可以删除子节点。
+ADMIN: 可以为节点设置权限。
+
+ZooKeeper设置ACL权限控制
+ZK的节点有5种操作权限：
+CREATE、READ、WRITE、DELETE、ADMIN 也就是 增、删、改、查、管理权限，这5种权限简写为crwda(即：每个单词的首字符缩写)
+注：这5种权限中，delete是指对子节点的删除权限，其它4种权限指对自身节点的操作权限
+
+身份的认证有4种方式：
+world：默认方式，相当于全世界都能访问
+auth：代表已经认证通过的用户(cli中可以通过addauth digest user:pwd 来添加当前上下文中的授权用户)
+digest：即用户名:密码这种方式认证，这也是业务系统中最常用的
+ip：使用Ip地址认证
+
+设置访问控制：
+方式一：（推荐）
+1）增加一个认证用户
+addauth digest 用户名:密码明文
+eg. addauth digest user1:password1
+2）设置权限
+setAcl /path auth:用户名:密码明文:权限
+eg. setAcl /test auth:user1:password1:cdrwa
+3）查看Acl设置
+getAcl /path
+
+方式二：
+setAcl /path digest:用户名:密码密文:权限
+注：这里的加密规则是SHA1加密，然后base64编码。
+
+
+参考：
+1、http://www.cnblogs.com/yjmyzz/p/zookeeper-acl-demo.html
+ 2、http://zookeeper.apache.org/doc/r3.1.2/zookeeperProgrammers.html
+https://www.jianshu.com/p/147ca2533aff
+
+https://blog.csdn.net/qq_17089617/article/details/77928207
+https://blog.csdn.net/qq_17089617/article/details/77959377
+
+
+
+利用zookeeper能做啥
+https://blog.csdn.net/yuzuyi2006/article/details/80009752
+
+1.使用zookeeper 实现动态维护服务列表（名字服务）
+2.使用zookeeper实现配置管理
+3．使用zookeeper分布式锁
+4.使用zookeeper集群管理
+
+
+
+zookeeper的选主机制的实现过程以及原理
+https://blog.csdn.net/lilong329329/article/details/78620382
+
 
 

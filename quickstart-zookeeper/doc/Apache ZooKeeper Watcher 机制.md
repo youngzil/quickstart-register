@@ -17,7 +17,25 @@ ZooKeeper Watcher 特性总结
 客户端 Watcher 回调的过程是一个串行同步的过程，这为我们保证了顺序，同时，需要开发人员注意的一点是，千万不要因为一个 Watcher 的处理逻辑影响了整个客户端的 Watcher 回调。
 
 3. 轻量级设计
-WatchedEvent 是 ZooKeeper 整个 Watcher 通知机制的最小通知单元，这个数据结构中只包含三部分的内容：通知状态、事件类型和节点路径。也就是说，Watcher 通知非常简单，只会告诉客户端发生了事件，而不会说明事件的具体内容。例如针对 NodeDataChanged 事件，ZooKeeper 的 Watcher 只会通知客户指定数据节点的数据内容发生了变更，而对于原始数据以及变更后的新数据都无法从这个事件中直接获取到，而是需要客户端主动重新去获取数据，这也是 ZooKeeper 的 Watcher 机制的一个非常重要的特性。另外，客户端向服务端注册 Watcher 的时候，并不会把客户端真实的 Watcher 对象传递到服务端，仅仅只是在客户端请求中使用 boolean 类型属性进行了标记，同时服务端也仅仅只是保存了当前连接的 ServerCnxn 对象。这样轻量级的 Watcher 机制设计，在网络开销和服务端内存开销上都是非常廉价的。
+WatchedEvent 是 ZooKeeper 整个 Watcher 通知机制的最小通知单元，这个数据结构中只包含三部分的内容：通知状态、事件类型和节点路径。
+也就是说，Watcher 通知非常简单，只会告诉客户端发生了事件，而不会说明事件的具体内容。例如针对 NodeDataChanged 事件，ZooKeeper 的 Watcher 只会通知客户指定数据节点的数据内容发生了变更，而对于原始数据以及变更后的新数据都无法从这个事件中直接获取到，而是需要客户端主动重新去获取数据，这也是 ZooKeeper 的 Watcher 机制的一个非常重要的特性。另外，客户端向服务端注册 Watcher 的时候，并不会把客户端真实的 Watcher 对象传递到服务端，仅仅只是在客户端请求中使用 boolean 类型属性进行了标记，同时服务端也仅仅只是保存了当前连接的 ServerCnxn 对象。这样轻量级的 Watcher 机制设计，在网络开销和服务端内存开销上都是非常廉价的。
+
+
+zookeeper：Watcher、ZK状态，事件类型（一）
+zookeeper有watch事件，是一次性触发的，当watch监视的数据发生变化时，通知设置了该watch的client.即watcher.
+同样：其watcher是监听数据发送了某些变化，那就一定会有对应的事件类型和状态类型。
+	事件类型:(znode节点相关的)
+		 EventType:NodeCreated            //节点创建
+		 EventType:NodeDataChanged        //节点的数据变更
+		 EventType:NodeChildrentChanged   //子节点下的数据变更
+		 EventType:NodeDeleted
+	状态类型:(是跟客户端实例相关的)
+		 KeeperState:Disconneced        //连接失败
+ 		 KeeperState:SyncConnected	//连接成功	 
+		 KeeperState:AuthFailed         //认证失败
+		 KeeperState:Expired            //会话过期
+		 
+		 
 
 结束语
 本文首先介绍了一个简单的监听示例代码，通过监听 ZNode 的变化，触发回调函数来实现触发后的业务处理，接下来简单介绍了一点回调函数的基本知识，然后我们开始讨论 Watcher 机制的实现原理，从 Watcher 接口开始聊，引申出 WatcherEvent 类型，再到添加 watcher 事件以及回调函数基本原理介绍，最后对 Watcher 机制的设计原理进行了三点总结。

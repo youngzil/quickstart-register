@@ -23,10 +23,11 @@ import org.apache.zookeeper.ZooKeeper;
  */
 public class ZooKeeperTest {
 
-    private static final int TIME_OUT = 3000;
-    private static final String HOST = "localhost:2181";
+    private static final int TIME_OUT = 30000;
+    private static final String HOST = "20.26.39.53:2181";
+//    private static final String HOST = "localhost:2181";
 
-    private static final String path = "/test";
+    private static final String path = "/test3";
 
     private static final String childrenPath = "/test/haha";
 
