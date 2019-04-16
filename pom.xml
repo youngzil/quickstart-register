@@ -21,6 +21,7 @@
 	<modules>
 		<module>quickstart-zookeeper</module>
 		<module>quickstart-consul</module>
+		<module>quickstart-etcd</module>
 	</modules>
 
 </project>

@@ -7,6 +7,9 @@ https://github.com/gliderlabs/docker-consul
 https://www.hashicorp.com/resources
 
 
+提供命令行和API的方式
+
+
 consul依赖go环境
 
 consul安装
@@ -27,7 +30,7 @@ Consul 启动
 
 
 查看consul cluster中的每一个consul节点的信息
-consul members
+./consul members
 
 Consul控制台
 http://127.0.0.1:8500/ui/
@@ -202,6 +205,12 @@ https://blog.csdn.net/liuxiaoxiaosmile/article/details/83017362
 https://blog.csdn.net/liuzhuchen/article/details/81913562
 https://www.cnblogs.com/newP/p/6349316.html
 
+
+服务发现
+https://www.cnblogs.com/newP/p/6349316.html
+https://blog.csdn.net/shlazww/article/details/38736511
+https://blog.csdn.net/mr_seaturtle_/article/details/77618403
+https://www.cnblogs.com/ASPNET2008/p/6892137.html
 
 
 
