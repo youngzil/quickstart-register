@@ -14,15 +14,16 @@ consul依赖go环境
 
 consul安装
 mac 用户，直接使用 brew 进行安装即可： brew install consul
+或者下载压缩包，直接解压即可
 
 安装部署
 https://www.consul.io/docs/upgrading.html
-
+https://learn.hashicorp.com/consul/getting-started/install
 
 下载安装包
 https://www.consul.io/downloads.html
 
-
+解压后配置PATH之后
 安装成功后，在命令行输入consul -v来检查是否安装成功
 
 Consul 启动
@@ -195,7 +196,7 @@ Consul 系列博文：http://www.cnblogs.com/java-zhao/archive/2016/04/13/538710
 
 查看
 /quickstart-spring-cloud/doc/Consul安装部署.md
-
+https://learn.hashicorp.com/consul/getting-started/install
 
 
 

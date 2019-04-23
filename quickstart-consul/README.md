@@ -1,5 +1,8 @@
-https://github.com/rickfast/consul-client
+API和SDK
+https://www.consul.io/api/libraries-and-sdks.html
 
+
+https://github.com/rickfast/consul-client
 
 此外还有
 https://github.com/Ecwid/consul-api
@@ -22,3 +25,11 @@ https://blog.csdn.net/u010246789/article/details/51871051
 https://blog.csdn.net/u010246789/article/details/51777011
 https://blog.csdn.net/liuxiaoxiaosmile/article/details/83017587
 https://blog.csdn.net/liuxiaoxiaosmile/article/details/83017430
+
+
+
+利用Consul的KV存储来实现Leader Election
+https://www.consul.io/docs/guides/leader-election.html
+
+
+

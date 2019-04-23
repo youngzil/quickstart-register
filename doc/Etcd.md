@@ -2,11 +2,17 @@ https://coreos.com/etcd/
 https://github.com/etcd-io/etcd
 https://coreos.com/etcd/docs/3.3.1/index.html
 https://etcd.readthedocs.io/en/latest/?badge=latest
+https://etcd.readthedocs.io/en/latest/
 
 
 中文文档
 http://etcd.doczh.cn/documentation/
 https://doczhcn.gitbook.io/etcd/
+
+
+
+demo学习
+https://github.com/etcd-io/etcd/blob/master/Documentation/demo.md
 
 
 提供命令行和API的方式
