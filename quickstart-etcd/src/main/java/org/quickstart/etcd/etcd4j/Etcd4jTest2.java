@@ -21,7 +21,7 @@ import mousio.etcd4j.responses.EtcdVersionResponse;
 /**
  * Etcd4jTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2019年4月15日 下午9:48:01
  * @since 1.0
  */

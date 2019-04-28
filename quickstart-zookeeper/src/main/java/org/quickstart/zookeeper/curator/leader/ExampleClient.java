@@ -20,7 +20,7 @@ import org.apache.curator.framework.recipes.leader.LeaderSelectorListenerAdapter
 /**
  * ExampleClient
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月19日 下午10:08:46
  * @version 2.0
  */

@@ -33,7 +33,7 @@ import com.orbitz.consul.model.health.ServiceHealth;
 /**
  * ServiceTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2019年4月15日 上午10:45:13
  * @since 1.0
  */

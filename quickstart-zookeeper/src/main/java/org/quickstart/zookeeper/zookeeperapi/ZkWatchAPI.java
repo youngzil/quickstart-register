@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 /**
  * ZkWatchAPI
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2018年4月26日 上午11:15:39
  * @since 1.0
  */

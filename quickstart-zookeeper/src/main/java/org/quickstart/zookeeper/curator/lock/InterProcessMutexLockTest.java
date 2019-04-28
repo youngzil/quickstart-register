@@ -19,7 +19,7 @@ import org.apache.curator.retry.RetryNTimes;
 /**
  * InterProcessMutexLockTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月18日 下午11:28:53
  * @version 2.0
  */
@@ -34,7 +34,7 @@ public class InterProcessMutexLockTest {
      * @param args
      * @throws Exception
      * @Exception
-     * @author：yangzl@asiainfo.com
+     * @author：youngzil@163.com
      * @2017年7月18日 下午11:38:30
      */
 

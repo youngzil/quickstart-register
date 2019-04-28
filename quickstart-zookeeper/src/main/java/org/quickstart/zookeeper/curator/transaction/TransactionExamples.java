@@ -20,7 +20,7 @@ import org.apache.curator.utils.CloseableUtils;
 /**
  * TransactionExamples 事务操作
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月3日 下午10:16:26
  * @version 1.0
  */

@@ -25,7 +25,7 @@ import com.google.common.collect.Lists;
 /**
  * LeaderLatchExample
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月19日 下午10:03:37
  * @version 2.0
  */

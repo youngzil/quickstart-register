@@ -17,7 +17,7 @@ import mousio.etcd4j.transport.EtcdNettyConfig;
 /**
  * EtcdNettyClientTest 
  *  
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2019年4月16日 下午3:42:56 
  * @since 1.0
  */

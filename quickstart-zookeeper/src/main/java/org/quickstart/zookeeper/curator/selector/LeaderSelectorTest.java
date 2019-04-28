@@ -21,7 +21,7 @@ import org.junit.Test;
 /**
  * LeaderSelectorTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月18日 下午11:42:23
  * @version 2.0
  */

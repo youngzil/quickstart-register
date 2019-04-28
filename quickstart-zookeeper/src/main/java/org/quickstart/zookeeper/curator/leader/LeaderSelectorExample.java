@@ -23,7 +23,7 @@ import com.google.common.collect.Lists;
 /**
  * LeaderSelectorExample
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月19日 下午10:09:38
  * @version 2.0
  */

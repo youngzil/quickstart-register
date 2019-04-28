@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 /**
  * CuratorZookeeperClient
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月2日 下午9:04:21
  * @version 1.0
  */

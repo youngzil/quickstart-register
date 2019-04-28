@@ -17,7 +17,7 @@ import com.orbitz.consul.StatusClient;
 /**
  * PeersAndLeaderTest 
  *  
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2019年4月15日 上午10:54:07 
  * @since 1.0
  */

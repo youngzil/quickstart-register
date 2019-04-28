@@ -11,7 +11,7 @@ package org.quickstart.zookeeper.zookeeperapi.jute;
 /**
  * MockReHeader 
  *  
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2019年1月17日 上午10:31:47 
  * @since 1.0
  */

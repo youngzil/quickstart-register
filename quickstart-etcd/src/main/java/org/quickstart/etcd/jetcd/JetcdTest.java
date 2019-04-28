@@ -32,7 +32,7 @@ import io.etcd.jetcd.watch.WatchEvent;
 /**
  * JetcdTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2019年4月15日 下午9:25:17
  * @since 1.0
  */

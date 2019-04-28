@@ -22,7 +22,7 @@ import org.apache.zookeeper.ZooDefs;
 /**
  * CuratorTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月3日 下午11:29:17
  * @version 1.0
  */

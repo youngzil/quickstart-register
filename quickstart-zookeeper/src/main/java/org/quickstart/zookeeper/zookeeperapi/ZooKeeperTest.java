@@ -17,7 +17,7 @@ import org.apache.zookeeper.ZooKeeper;
 /**
  * ZooKeeperTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月2日 下午7:05:50
  * @version 1.0
  */

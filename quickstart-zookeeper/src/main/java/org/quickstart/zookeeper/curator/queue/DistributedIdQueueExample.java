@@ -24,7 +24,7 @@ import org.apache.curator.utils.CloseableUtils;
 /**
  * DistributedIdQueueExample
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月19日 下午9:07:40
  * @version 2.0
  */

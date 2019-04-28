@@ -27,7 +27,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
  *        public DistributedBarrier(CuratorFramework client, String barrierPath) DistributedBarrier构造函数中barrierPath参数用来确定一个栅栏，只要barrierPath参数相同(路径相同)就是同一个栅栏。通常情况下栅栏的使用如下： 1.主导client设置一个栅栏
  *        2.其他客户端就会调用waitOnBarrier()等待栅栏移除，程序处理线程阻塞 3.主导client移除栅栏，其他客户端的处理程序就会同时继续运行。 DistributedBarrier类的主要方法如下： setBarrier() - 设置栅栏 waitOnBarrier() - 等待栅栏移除 removeBarrier() - 移除栅栏
  *        异常处理：DistributedBarrier会监控连接状态，当连接断掉时waitOnBarrier()方法会抛出异常。
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月19日 上午8:36:14
  * @version 2.0
  */

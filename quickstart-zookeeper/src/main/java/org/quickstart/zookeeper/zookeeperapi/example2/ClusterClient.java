@@ -13,7 +13,7 @@ package org.quickstart.zookeeper.zookeeperapi.example2;
  *  
  *  https://www.ibm.com/developerworks/cn/opensource/os-cn-apache-zookeeper-watcher/
  *  
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2018年4月26日 下午12:27:39 
  * @since 1.0
  */

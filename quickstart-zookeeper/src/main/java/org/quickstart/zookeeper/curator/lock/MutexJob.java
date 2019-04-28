@@ -16,7 +16,7 @@ import org.apache.curator.framework.recipes.locks.InterProcessLock;
 /**
  * MutexJob 
  *  
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月3日 下午10:45:48 
  * @version 1.0
  */

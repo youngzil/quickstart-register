@@ -26,7 +26,7 @@ import com.orbitz.consul.option.QueryOptions;
 /**
  * KeyValueTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2019年4月15日 上午10:45:42
  * @since 1.0
  */

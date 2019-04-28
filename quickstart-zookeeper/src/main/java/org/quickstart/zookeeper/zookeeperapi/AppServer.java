@@ -20,7 +20,7 @@ import org.apache.zookeeper.ZooKeeper;
 /**
  * AppServer 
  *  
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月2日 下午8:50:01 
  * @version 1.0
  */

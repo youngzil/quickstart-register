@@ -22,7 +22,7 @@ import org.apache.curator.utils.CloseableUtils;
  * RecipesExample Curator宣称，Recipes模块实现了除二阶段提交之外的所有zookeeper特性。 主要有Elections(选举)，Locks（锁），Barriers（关卡），Atomic（原子量），Caches，Queues等 选举主要依赖于LeaderSelector和LeaderLatch2个类。 前者是所有存活的客户端不间断的轮流做Leader，大同社会。
  * 后者是一旦选举出Leader，除非有客户端挂掉重新触发选举，否则不会交出领导权。某党？
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月3日 下午10:31:46
  * @version 1.0
  */

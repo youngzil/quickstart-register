@@ -19,7 +19,7 @@ import org.apache.zookeeper.server.ByteBufferInputStream;
 /**
  * MainTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2019年1月17日 上午10:32:22
  * @since 1.0
  */

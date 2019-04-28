@@ -11,7 +11,7 @@ package org.quickstart.zookeeper.curator;
 /**
  * PersistentEphemeralNodeExample 
  *  
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2018年4月24日 下午3:02:16 
  * @since 1.0
  */

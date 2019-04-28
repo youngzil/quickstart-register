@@ -27,7 +27,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
  * 2.栅栏数量达到memberQty，多个客户端同时停止阻塞继续运行，直到执行leave()方法，等待memberQty个数量的栅栏同时阻塞到leave()方法中。 3.memberQty个数量的栅栏同时阻塞到leave()方法中，多个客户端的leave()方法停止阻塞，继续运行。 DistributedDoubleBarrier类的主要方法如下： enter()、enter(long
  * maxWait, TimeUnit unit) - 等待同时进入栅栏 leave()、leave(long maxWait, TimeUnit unit) - 等待同时离开栅栏 异常处理：DistributedDoubleBarrier会监控连接状态，当连接断掉时enter()和leave方法会抛出异常。
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月19日 上午8:45:42
  * @version 2.0
  */

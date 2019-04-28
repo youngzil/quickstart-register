@@ -41,7 +41,7 @@ import org.apache.zookeeper.server.ZooKeeperServerMXBean;
 /**
  * ZooKeeperJMXTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月2日 下午8:27:18
  * @version 1.0
  */

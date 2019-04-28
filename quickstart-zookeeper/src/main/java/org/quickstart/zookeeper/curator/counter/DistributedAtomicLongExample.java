@@ -28,7 +28,7 @@ import com.google.common.collect.Lists;
 /**
  * DistributedAtomicLongExample
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2017年7月19日 下午9:25:59
  * @version 2.0
  */

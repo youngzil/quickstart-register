@@ -24,7 +24,7 @@ import com.ecwid.consul.v1.kv.model.GetValue;
 /**
  * ExampleTest
  * 
- * @author：yangzl@asiainfo.com
+ * @author：youngzil@163.com
  * @2019年4月15日 下午2:43:01
  * @since 1.0
  */
