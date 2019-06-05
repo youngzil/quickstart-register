@@ -3,7 +3,7 @@
  * 文件名：PersistentEphemeralNodeExample.java
  * 版本信息：
  * 日期：2018年4月24日
- * Copyright asiainfo Corporation 2018
+ * Copyright youngzil Corporation 2018
  * 版权所有 *
  */
 package org.quickstart.zookeeper.curator;

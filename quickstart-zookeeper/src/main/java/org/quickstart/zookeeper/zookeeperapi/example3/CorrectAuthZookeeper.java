@@ -3,7 +3,7 @@
  * 文件名：CorrectAuthZookeeper.java
  * 版本信息：
  * 日期：2019年1月15日
- * Copyright asiainfo Corporation 2019
+ * Copyright youngzil Corporation 2019
  * 版权所有 *
  */
 package org.quickstart.zookeeper.zookeeperapi.example3;

@@ -3,7 +3,7 @@
  * 文件名：ZooKeeperJMXTest.java
  * 版本信息：
  * 日期：2017年7月2日
- * Copyright asiainfo Corporation 2017
+ * Copyright youngzil Corporation 2017
  * 版权所有 *
  */
 package org.quickstart.zookeeper.zookeeperapi;
