@@ -1,5 +1,5 @@
-原项目地址
-https://gitee.com/youngzil/quickstart-all
+项目地址
+https://github.com/youngzil/quickstart-register
 
 
 
@@ -9,7 +9,7 @@ Eureka
 Consul
 Etcd
 
-Doozer
+
 Nacos的代码是托管在github上，https://github.com/alibaba/nacos
 
 doozer：2011年开始就不更新了，基本废弃了。。。。
@@ -66,9 +66,16 @@ copy cat https://github.com/kuujo/copycat
 
 
 
+
+ZooKeeper 管理:
+Zkdash框架
+TaoKeeper框架
+
+
+
 参考
 https://blog.csdn.net/younger_china/article/details/53063426
-
+https://blog.csdn.net/u010963948/article/details/71730165
 
 
 

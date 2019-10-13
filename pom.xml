@@ -23,6 +23,7 @@
 		<module>quickstart-consul</module>
 		<module>quickstart-etcd</module>
 		<module>quickstart-zkweb</module>
+		<module>quickstart-nacos</module>
 	</modules>
 
 </project>
