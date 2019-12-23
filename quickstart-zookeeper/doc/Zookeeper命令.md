@@ -19,6 +19,9 @@
 单机模式(只有一台服务器)连接
 [root@localhost zookeeper-3.4.10]# ./bin/zkCli.sh -server 127.0.0.1:2181
 
+集群方式
+bin/zkCli.sh -server 10.11.20.101:2181,10.11.20.103:2181,10.1.226.100:2181
+
 
 zk客户端命令
 ZooKeeper命令行工具类似于Linux的shell环境，不过功能肯定不及shell啦，但是使用它我们可以简单的对ZooKeeper进行访问，数据创建，数据修改等操作.  使用 zkCli.sh -server 127.0.0.1:2181 连接到 ZooKeeper 服务，连接成功后，系统会输出 ZooKeeper 的相关环境以及配置信息。

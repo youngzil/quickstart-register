@@ -11,3 +11,15 @@ zookeeper控制台zkWeb
 https://github.com/zhitom/zkweb
 
 
+打包
+mvn -DskipTests clean install -U
+
+放到tomcat下，启动tomcat
+
+启动Tomcat
+./startup.sh 
+./catalina.sh run  （建议用这种启动方式，控制信息可以输出）
+
+关闭命令
+./shutdown.sh
+
