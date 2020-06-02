@@ -2,6 +2,15 @@
 https://github.com/youngzil/quickstart-register
 
 
+SmartStack：云中的服务发现
+
+SmartStack是一个自动化的服务发现和注册框架。
+通过透明地处理组织内运行代码的计算机的创建，删除，故障和维护工作，它使工程师的工作变得更加轻松。
+我们认为，我们针对此问题的方法是最好的方法：与任何同类方法相比，概念上更简单，更易于操作，更可配置并且提供更多的内省。
+过去一年，SmartStack方式已经在Airbnb上进行了实战测试，并且在许多大小的组织中都具有广泛的适用性。
+
+https://medium.com/airbnb-engineering/smartstack-service-discovery-in-the-cloud-4b8a080de619
+
 
 Zookeeper
 Eureka

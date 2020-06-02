@@ -107,7 +107,6 @@ public class ZookeeperDistributeLock implements DistributedLock {
      * 
      * @param startMillis
      * @param millisToWait
-     * @param ourPath
      * @return
      * @throws Exception
      */

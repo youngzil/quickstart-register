@@ -1,3 +1,9 @@
+1.Zookeeper服务相关命令（服务端命令）
+2.Zookeeper命令连接（zk客户端命令）
+ZooKeeper 常用四字命令
+
+
+
 
 
 1.Zookeeper服务相关命令
@@ -13,7 +19,7 @@
 /opt/zookeeper-3.4.10
 
 
-2.Zookeeper命令连接
+2.Zookeeper命令连接（zk客户端命令）
 启动
 [root@localhost zookeeper-3.4.10]# sh ./bin/zkServer.sh start
 单机模式(只有一台服务器)连接
@@ -21,6 +27,15 @@
 
 集群方式
 bin/zkCli.sh -server 10.11.20.101:2181,10.11.20.103:2181,10.1.226.100:2181
+
+连接
+sh bin/zkCli.sh -server 127.0.0.1:2181
+
+帮助
+help
+
+退出
+quit
 
 
 zk客户端命令

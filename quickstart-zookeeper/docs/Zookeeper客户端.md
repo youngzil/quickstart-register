@@ -2,7 +2,7 @@
 2、客户端交互流程
 3、客户端CONNECTIONLOSS和SESSIONEXPIRED
 4、面试的常见问题
-
+5、客户端框架
 
 ---------------------------------------------------------------------------------------------------------------------  
 面试的常见问题
@@ -134,4 +134,23 @@ https://blog.csdn.net/bestree007/article/details/18996479
 https://xusenqi.github.io/2019/06/06/%E5%85%B3%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%87%8D%E8%BF%9EZooKeeper%E7%9A%84%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/
 https://www.jianshu.com/p/7491a8b558c1
 https://halfsre.com/article/2019/5/13/7.html
+
+
+---------------------------------------------------------------------------------------------------------------------  
+客户端框架
+
+1、zookeeper api
+2、zkclient
+3、curator-framework
+4、
+
+
+
+
+
+
+
+
+
+
 

@@ -24,7 +24,7 @@ import org.apache.zookeeper.ZooKeeper;
 public class ZooKeeperTest {
 
     private static final int TIME_OUT = 30000;
-    private static final String HOST = "20.26.39.53:2181";
+    private static final String HOST = "127.0.0.1:2181";
 //    private static final String HOST = "localhost:2181";
 
     private static final String path = "/test3";
@@ -35,6 +35,7 @@ public class ZooKeeperTest {
 
         ZooKeeper zookeeper = new ZooKeeper(HOST, TIME_OUT, null);
         System.out.println("=========创建节点===========");
+
         if (zookeeper.exists(path, false) == null) {
             zookeeper.create(path, "znode1".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
         }

@@ -1,28 +1,23 @@
 Zookeeper的三种角色和三种状态     
 Zookeeper的节点数据结构 和 节点类型     
-Zookeeper的watch机制   
-  
-  
-ZooKeeper 是一个典型的分布式数据一致性解决方案，分布式应用程序可以基于 ZooKeeper 实现诸如数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master 选举、分布式锁和分布式队列等功能。 
-zookeeper作用：    
-1、Zookeeper 一个最常用的使用场景就是用于担任服务生产者和服务消费者的注册中心(提供发布订阅服务)  
-2、ActieMQ作为Master选举的功能      
-3、Kafka是作为  
-4、  
-5、  
-6、  
-7、  
+Zookeeper的watch机制
+zookeeper的应用场景、利用zookeeper能做啥、zookeeper作用
+选举原理
 
-为什么最好使用奇数台服务器构成 ZooKeeper 集群？   
-所谓的zookeeper容错是指，当宕掉几个zookeeper服务器之后，剩下的个数必须大于宕掉的个数的话整个zookeeper才依然可用。  
-假如我们的集群中有n台zookeeper服务器，那么也就是剩下的服务数必须大于n/2。 
-先说一下结论，2n和2n-1的容忍度是一样的，都是n-1    
-所以何必增加那一个不必要的zookeeper呢？    
+Zookeeper动态扩容
+Zookeeper常见问题 
+
+zookeeper：Watcher、ZK状态，事件类型（一）
+zookeeper的ACL权限控制(AUTH)
+
+ZK总结
+Zookeeper脑裂
+
+为什么最好使用奇数台服务器构成 ZooKeeper 集群？
 
 
 图解 Paxos 一致性协议  
 Zookeeper ZAB 协议分析  
-
 
 
 参考  
@@ -37,6 +32,14 @@ https://www.qingtingip.com/h_277671.html
 ZooKeeper 是一个典型的分布式数据一致性解决方案，分布式应用程序可以基于 ZooKeeper 实现诸如数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master 选举、分布式锁和分布式队列等功能。  
 
 
+zookeeper作用：    
+1、Zookeeper 一个最常用的使用场景就是用于担任服务生产者和服务消费者的注册中心(提供发布订阅服务)  
+2、ActieMQ作为Master选举的功能      
+3、Kafka是作为  
+4、  
+5、  
+6、  
+7、 
 
 
 ---------------------------------------------------------------------------------------------------------------------  
@@ -71,7 +74,8 @@ zookeeper中的每个节点称为一个znode，每个znode维持一个数据结�
 2、② 写入请求发送到Follower节点：由Follower节点转发给Leader节点，处理后Leader返回结果给Follower，原来的Follower返回写入成功消息给Client；  
   
   
-  
+Zookeeper的节点数据结构 和 节点类型
+
 znode有三种基本类型和两种组合类型：  
 1、Persistence znode 持久znode  
 2、Ephemeral znode − 临时znode  
@@ -83,6 +87,8 @@ znode有三种基本类型和两种组合类型：
   
   
   
+Zookeeper的watch机制  
+
 ZooKeeper 的 Watcher 机制主要包括客户端线程、客户端 WatchManager 和 ZooKeeper 服务器三部分  
 1. 注册只能确保一次消费  
 2. 客户端串行执行  
@@ -118,9 +124,6 @@ https://blog.csdn.net/qiangcuo6087/article/details/79042035
 https://blog.csdn.net/wzk646795873/article/details/79706627  
   
 ---------------------------------------------------------------------------------------------------------------------    
-  
-  
-  
 Zookeeper动态扩容  
 https://blog.csdn.net/levy_cui/article/details/70859355  
 https://cloud.tencent.com/developer/article/1119410  
@@ -149,7 +152,7 @@ https://my.oschina.net/u/2277632/blog/1540809
 https://blog.csdn.net/xinguan1267/article/details/38422149  
   
 ---------------------------------------------------------------------------------------------------------------------    
-Zookeeper  
+Zookeeper常见问题  
 http://jm.taobao.org/2013/10/07/zookeeper-faq/  
 https://blog.csdn.net/u010185262/article/details/49910301  
   
@@ -219,7 +222,7 @@ zookeeper有watch事件，是一次性触发的，当watch监视的数据发生�
 		 KeeperState:AuthFailed         //认证失败  
 		 KeeperState:Expired            //会话过期  
   
-zookeeper的ACL(AUTH)  
+zookeeper的ACL权限控制(AUTH)  
 ACL(Access Control List),Zookeeper作为一个分布式协调框架，其内部存储的都是一些关于分布式  
 系统运行时状态的元数据，尤其是设计到一些分布式锁，Master选举和协调等应用场景。我们需要有  
 效地保障Zookeeper中的数据安全，Zookeeper提供了三种模式。权限模式，授权对象，权限。  
@@ -371,12 +374,15 @@ Zookeeper脑裂是什么原因导致这样情况的出现呢？
 在slaver切换的时候不在检查到老的master出现问题后马上切换，而是在休眠一段足够的时间，确保老的master已经获知变更并且做了相关的shutdown清理工作了然后再注册成为master就能避免这类问题了，这个休眠时间一般定义为与Zookeeper定义的超时时间就够了，但是这段时间内系统不可用了。  
   
 ---------------------------------------------------------------------------------------------------------------------  
-  
-  
-  
-  
-  
-  
+
+为什么最好使用奇数台服务器构成 ZooKeeper 集群？   
+所谓的zookeeper容错是指，当宕掉几个zookeeper服务器之后，剩下的个数必须大于宕掉的个数的话整个zookeeper才依然可用。  
+假如我们的集群中有n台zookeeper服务器，那么也就是剩下的服务数必须大于n/2。 
+先说一下结论，2n和2n-1的容忍度是一样的，都是n-1    
+所以何必增加那一个不必要的zookeeper呢？  
+
+
+
 ---------------------------------------------------------------------------------------------------------------------  
 
 

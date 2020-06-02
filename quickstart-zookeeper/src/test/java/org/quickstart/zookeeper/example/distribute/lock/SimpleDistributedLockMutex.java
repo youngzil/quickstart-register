@@ -27,15 +27,16 @@ public class SimpleDistributedLockMutex extends BaseDistributedLock implements D
     /**
      * 用于获取锁资源，通过父类的获取锁方法来获取锁
      * 
-     * @param time获取锁的超时时间
+     * @param time 获取锁的超时时间
      * @param unit time的时间单位
      * @return是否获取到锁
      * @throws Exception
      */
     private boolean internalLock(long time, TimeUnit unit) throws Exception {
         // 如果ourLockPath不为空则认为获取到了锁，具体实现细节见attemptLock的实现
-        ourLockPath = attemptLock(time, unit);
-        return ourLockPath != null;
+        return attemptLock(time, unit);
+        // ourLockPath = attemptLock(time, unit);
+        // return ourLockPath != null;
     }
 
     /**
@@ -73,7 +74,10 @@ public class SimpleDistributedLockMutex extends BaseDistributedLock implements D
         releaseLock(ourLockPath);
     }
 
-    /* (non-Javadoc)
+  private void releaseLock(String ourLockPath) {
+  }
+
+  /* (non-Javadoc)
      * @see org.quickstart.zookeeper.example.distribute.lock.DistributedLock#tryLock()
      */
     @Override

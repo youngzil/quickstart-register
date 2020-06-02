@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import org.I0Itec.zkclient.ZkClient;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
@@ -25,10 +26,12 @@ public abstract class BaseDistributedLock implements DistributedLock {
     private String lockNamePre;// 锁前缀
     private String currentLockPath;// 用于保存某个客户端在locker下面创建成功的顺序节点，用于后续相关操作使用（如判断）
     private static int MAX_RETRY_COUNT = 10;// 最大重试次数
-    
 
-    
-    /**
+  public BaseDistributedLock(ZkClient client, String basePath, String lockName) {
+  }
+
+
+  /**
      * 初始化根目录
      */
     private void init() {
@@ -95,7 +98,6 @@ public abstract class BaseDistributedLock implements DistributedLock {
      * 
      * @param startMillis
      * @param millisToWait
-     * @param ourPath
      * @return
      * @throws Exception
      */

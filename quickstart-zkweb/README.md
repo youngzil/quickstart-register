@@ -11,6 +11,7 @@ zookeeper控制台zkWeb
 https://github.com/zhitom/zkweb
 
 
+# 使用
 打包
 mvn -DskipTests clean install -U
 
@@ -22,4 +23,11 @@ mvn -DskipTests clean install -U
 
 关闭命令
 ./shutdown.sh
+
+
+访问
+http://localhost:8080/zkWeb-1.0/
+
+
+
 
