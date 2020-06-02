@@ -38,12 +38,12 @@ public class CuratorTest {
                 .creatingParentsIfNeeded()// 如果指定的节点的父节点不存在，递归创建父节点
                 .withMode(CreateMode.PERSISTENT)// 存储类型（临时的还是持久的）
                 .withACL(ZooDefs.Ids.OPEN_ACL_UNSAFE)// 访问权限
-                .forPath("zk/test");// 创建的路径
+                .forPath("/zk/test");// 创建的路径
 
         zkTools.// 对路径节点赋值
-                setData().forPath("zk/test", "hello world".getBytes(Charset.forName("utf-8")));
+                setData().forPath("/zk/test", "hello world".getBytes(Charset.forName("utf-8")));
 
-        byte[] buffer = zkTools.getData().usingWatcher(new ZKWatch("zk/test")).forPath("zk/test");
+        byte[] buffer = zkTools.getData().usingWatcher(new ZKWatch("/zk/test")).forPath("/zk/test");
         System.out.println(new String(buffer));
     }
 

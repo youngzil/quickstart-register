@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yasenagat.zkweb.model.Tree;
 import com.yasenagat.zkweb.model.TreeRoot;
 import com.yasenagat.zkweb.util.ZkCache;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/zk")
 public class ZkController {
+
+
 	
 	private static final Logger log = LoggerFactory.getLogger(ZkController.class);
 
