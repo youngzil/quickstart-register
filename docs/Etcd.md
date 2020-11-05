@@ -1,18 +1,20 @@
-https://coreos.com/etcd/
-https://github.com/etcd-io/etcd
-https://coreos.com/etcd/docs/3.3.1/index.html
-https://etcd.readthedocs.io/en/latest/?badge=latest
-https://etcd.readthedocs.io/en/latest/
+[etcd官网](https://etcd.io/)  
+[etcd Github](https://github.com/etcd-io/etcd)  
+[etcd文档](https://etcd.io/docs/)  
+[etcd文档 Github地址](https://etcd.io/docs/)  
+[etcd demo学习](https://github.com/etcd-io/etcd/blob/master/Documentation/demo.md)  
+
+
+A distributed, reliable key-value store for the most critical data of a distributed system
+
+用于分布式系统最关键数据的分布式可靠键值存储
+
 
 
 中文文档
 http://etcd.doczh.cn/documentation/
 https://doczhcn.gitbook.io/etcd/
 
-
-
-demo学习
-https://github.com/etcd-io/etcd/blob/master/Documentation/demo.md
 
 
 提供命令行和API的方式

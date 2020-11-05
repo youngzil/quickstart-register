@@ -23,7 +23,7 @@
     <dependency>
       <groupId>io.etcd</groupId>
       <artifactId>jetcd-core</artifactId>
-      <version>0.5.3</version>
+      <version>0.5.4</version>
     </dependency>
     <dependency>
       <groupId>com.beust</groupId>

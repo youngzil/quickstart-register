@@ -1,15 +1,16 @@
-https://github.com/etcd-io/jetcd
-https://coreos.com/blog/java-and-etcd-together-with-jetcd
+[jetcd](https://github.com/etcd-io/jetcd)  
+[jetcd使用文档](https://coreos.com/blog/java-and-etcd-together-with-jetcd)  
 
-etcd4j目前不支持3.0的API，要设置export ETCDCTL_API=2
-https://github.com/jurmous/etcd4j
+[etcd-java](https://github.com/IBM/etcd-java) : Alternative etcd3 java client  
+[Etcd4j](https://github.com/jurmous/etcd4j) : Java / Netty client for etcd, the highly-available key value store for shared configuration and service discovery.  
+    etcd4j目前不支持3.0的API，要设置export ETCDCTL_API=2
 
-https://github.com/IBM/etcd-java
+
+很久不再更新的项目  
+[Boon etcd](https://github.com/boonproject/boon/tree/master/etcd) : Boon etcd is a Java client for etcd.  
+[jetcd](https://github.com/justinsb/jetcd) : jetcd: Java binding for etcd  
 
 
-不再更新了
-https://github.com/boonproject/boon/tree/master/etcd
-https://github.com/justinsb/jetcd
 
 
 教程参考

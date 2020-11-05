@@ -1,10 +1,23 @@
-https://www.consul.io
-https://github.com/hashicorp/consul
-https://spring.io/projects/spring-cloud-consul
-https://hub.docker.com/_/consul?tab=tags
-https://github.com/consul/consul
-https://github.com/gliderlabs/docker-consul
-https://www.hashicorp.com/resources
+Consul
+
+
+[Consul官网](https://www.consul.io/)  
+[Consul Github](https://github.com/hashicorp/consul)  
+
+
+[升级Consul文档指导](https://www.consul.io/docs/upgrading.html)
+
+[spring-cloud-consul](https://spring.io/projects/spring-cloud-consul)  
+[Consul Docker资源](https://hub.docker.com/_/consul?tab=tags)  
+[docker-consul](https://github.com/gliderlabs/docker-consul)  
+
+
+[Consul母公司HashiCorp的组件资源](https://www.hashicorp.com/resources)  
+
+
+Consul is a distributed, highly available, and data center aware solution to connect and configure applications across dynamic, distributed infrastructure.
+
+Consul是一种分布式，高度可用且具有数据中心感知能力的解决方案，用于跨动态，分布式基础架构连接和配置应用程序。
 
 
 提供命令行和API的方式
@@ -16,12 +29,12 @@ consul安装
 mac 用户，直接使用 brew 进行安装即可： brew install consul
 或者下载压缩包，直接解压即可
 
-安装部署
-https://www.consul.io/docs/upgrading.html
-https://learn.hashicorp.com/consul/getting-started/install
+安装部署参考  
+[Install Consul](https://learn.hashicorp.com/consul/getting-started/install)  
+[升级Consul文档指导](https://www.consul.io/docs/upgrading.html)
 
-下载安装包
-https://www.consul.io/downloads.html
+
+[下载安装包](https://www.consul.io/downloads)
 
 解压后配置PATH之后
 安装成功后，在命令行输入consul -v来检查是否安装成功
@@ -180,23 +193,18 @@ Server节点有一个Leader和多个Follower，Leader节点会将数据同步到
 
 
 
-参考文档：
-https://blog.csdn.net/u010046908/article/details/61916389
-http://blog.didispace.com/consul-service-discovery-exp/
-https://book-consul-guide.vnzmi.com/
-
-Consul官方文档：https://www.consul.io/intro/getting-started/install.html
-Consul 系列博文：http://www.cnblogs.com/java-zhao/archive/2016/04/13/5387105.html
-使用consul实现分布式服务注册和发现：http://www.tuicool.com/articles/M3QFven
-
-指导手册https://www.consul.io/docs/guides/index.html
-安装部分参考自：https://www.consul.io/intro/getting-started/install.html
-启动和停止服务部分参考自：https://www.consul.io/intro/getting-started/agent.html
+参考文档：  
+[Consul官方文档](https://learn.hashicorp.com/collections/consul/getting-started)  
+[Consul 系列博文](https://www.cnblogs.com/java-zhao/category/810861.html)  
 
 
-查看
-/quickstart-spring-cloud/doc/Consul安装部署.md
-https://learn.hashicorp.com/consul/getting-started/install
+[Consul 简介、安装、常用命令的使用](https://blog.csdn.net/u010046908/article/details/61916389)  
+[使用Consul做服务发现的若干姿势](http://blog.didispace.com/consul-service-discovery-exp/)  
+[Consul入门指南](https://book-consul-guide.vnzmi.com/)  
+
+[使用consul实现分布式服务注册和发现](https://www.tuicool.com/articles/M3QFven)  
+
+
 
 
 

@@ -1,12 +1,12 @@
-1.Zookeeper服务相关命令（服务端命令）
-2.Zookeeper命令连接（zk客户端命令）
-ZooKeeper 常用四字命令
+- [Zookeeper服务相关命令（服务端命令）](#Zookeeper服务相关命令（服务端命令）)
+- [Zookeeper命令连接（zk客户端命令）](#Zookeeper命令连接（zk客户端命令）)
+- [ZooKeeper常用四字命令](#ZooKeeper常用四字命令)
 
 
 
 
+## Zookeeper服务相关命令（服务端命令）
 
-1.Zookeeper服务相关命令
 在准备好相应的配置之后，可以直接通过zkServer.sh 这个脚本进行服务的相关操作
 1. 启动ZK服务:       sh bin/zkServer.sh start
 2. 查看ZK服务状态:   sh bin/zkServer.sh status
@@ -19,7 +19,9 @@ ZooKeeper 常用四字命令
 /opt/zookeeper-3.4.10
 
 
-2.Zookeeper命令连接（zk客户端命令）
+
+## Zookeeper命令连接（zk客户端命令）
+
 启动
 [root@localhost zookeeper-3.4.10]# sh ./bin/zkServer.sh start
 单机模式(只有一台服务器)连接
@@ -52,8 +54,10 @@ ZooKeeper命令行工具类似于Linux的shell环境，不过功能肯定不及s
 8. 帮助命令： help
 
 
-ZooKeeper 常用四字命令：
-      ZooKeeper 支持某些特定的四字命令字母与其的交互。它们大多是查询命令，用来获取 ZooKeeper 服务的当前状态及相关信息。用户在客户端可以通过 telnet 或 nc 向 ZooKeeper 提交相应的命令
+
+## ZooKeeper常用四字命令
+
+ ZooKeeper 支持某些特定的四字命令字母与其的交互。它们大多是查询命令，用来获取 ZooKeeper 服务的当前状态及相关信息。用户在客户端可以通过 telnet 或 nc 向 ZooKeeper 提交相应的命令
 
 1. 可以通过命令：echo stat|nc 127.0.0.1 2181 来查看哪个节点被选择作为follower或者leader
 2. 使用echo ruok|nc 127.0.0.1 2181 测试是否启动了该Server，若回复imok表示已经启动。

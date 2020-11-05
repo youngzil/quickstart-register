@@ -1,19 +1,41 @@
-Zookeeper的三种角色和三种状态     
-Zookeeper的节点数据结构 和 节点类型     
-Zookeeper的watch机制
-zookeeper的应用场景、利用zookeeper能做啥、zookeeper作用
-选举原理
+- [Zookeeper简介](../../quickstart-zookeeper/README.md)
+- [Zookeeper的三种角色和三种状态](#Zookeeper的三种角色和三种状态)
+- [Zookeeper的节点数据结构和节点类型](#Zookeeper的节点数据结构和节点类型)
+- [Zookeeper的watch机制](#Zookeeper的watch机制)
+- [Zookeeper的应用场景](#Zookeeper的应用场景)
+    - zookeeper的应用场景、利用zookeeper能做啥、zookeeper作用
+- [Zookeeper选举原理](#Zookeeper选举原理)
+    - 选举原理：事务id号（zxid）：高32位的epoch + 低32位用于递增计数 
+- [Zookeeper动态扩容](#Zookeeper动态扩容)
+- [Zookeeper常见问题总结](#Zookeeper常见问题总结)
+- [Zookeeper：Watcher、ZK状态，事件类型](#Zookeeper：Watcher、ZK状态，事件类型)
+- [Zookeeper的ACL权限控制(AUTH)](#Zookeeper的ACL权限控制(AUTH))
+- [为什么最好使用奇数台服务器构成ZooKeeper集群](#为什么最好使用奇数台服务器构成ZooKeeper集群)
+- [Zookeeper脑裂是什么原因导致这样情况的出现呢](#Zookeeper脑裂是什么原因导致这样情况的出现呢)
+- [利用zookeeper能做啥](#利用zookeeper能做啥)
+- [ZooKeeper的Watcher机制](ZooKeeper的Watcher机制.md)
+- [Curator使用](Curator.md)
+- [Zookeeper命令](Zookeeper命令.md)
+    - [Zookeeper服务相关命令（服务端命令）](Zookeeper命令.md#Zookeeper服务相关命令（服务端命令）)
+    - [Zookeeper命令连接（zk客户端命令）](Zookeeper命令.md#Zookeeper命令连接（zk客户端命令）)
+    - [ZooKeeper常用四字命令](Zookeeper命令.md#ZooKeeper常用四字命令)
+- [Zookeeper客户端使用](Zookeeper客户端使用.md)
+    - [客户端配置](Zookeeper客户端使用.md#客户端配置)
+    - [客户端交互流程](Zookeeper客户端使用.md#客户端交互流程)
+    - [客户端CONNECTIONLOSS和SESSIONEXPIRED](Zookeeper客户端使用.md#客户端CONNECTIONLOSS和SESSIONEXPIRED)
+    - [面试的常见问题](Zookeeper客户端使用.md#面试的常见问题)
+    - [客户端框架](Zookeeper客户端使用.md#客户端框架)
+- [Zookeeper服务端和客户端的配置](Zookeeper服务端和客户端的配置.md)
+    - [服务端配置项说明](Zookeeper服务端和客户端的配置.md#服务端配置项说明)
+    - [客户端配置项](Zookeeper服务端和客户端的配置.md#客户端配置项)
+- [单节点部署启动](单节点部署启动.md)
+    - [Brew安装](单节点部署启动.md#Brew安装)
+    - [Tar包部署](单节点部署启动.md#Tar包部署)
+- [集群部署启动](集群部署启动.md)
+- [ZooKeeper可视化管理工具](#ZooKeeper可视化管理工具)
 
-Zookeeper动态扩容
-Zookeeper常见问题 
 
-zookeeper：Watcher、ZK状态，事件类型（一）
-zookeeper的ACL权限控制(AUTH)
 
-ZK总结
-Zookeeper脑裂
-
-为什么最好使用奇数台服务器构成 ZooKeeper 集群？
 
 
 图解 Paxos 一致性协议  
@@ -22,10 +44,8 @@ Zookeeper ZAB 协议分析
 
 参考  
 https://www.cnblogs.com/lanqiu5ge/p/9405601.html
-https://github.com/Snailclimb/JavaGuide/blob/master/docs/system-design/framework/ZooKeeper.md   
 https://hadyang.gitbook.io/interview/architecture/distributed/6-zk  
 https://www.cnblogs.com/qingyunzong/p/8618965.html  
-https://www.qingtingip.com/h_277671.html    
 
 
 ---------------------------------------------------------------------------------------------------------------------
@@ -43,7 +63,7 @@ zookeeper作用：
 
 
 ---------------------------------------------------------------------------------------------------------------------  
-Zookeeper的三种角色和三种状态  
+## Zookeeper的三种角色和三种状态
   
 三种角色：leader、follower、observer  
 领导者（leader），负责进行投票的发起和决议，更新系统状态  
@@ -54,68 +74,73 @@ Observer可以接受客户端连接，将写请求转发给leader，但observer�
   
   
 每个Server在工作过程中有三种状态：LOOKING、LEADING、FOLLOWING  
-　　　　LOOKING：当前Server不知道leader是谁，正在搜寻  
-　　　　LEADING：当前Server即为选举出来的leader  
-　　　　FOLLOWING：leader已经选举出来，当前Server与之同步  
-  
-  
-  
+- LOOKING：当前Server不知道leader是谁，正在搜寻  
+- LEADING：当前Server即为选举出来的leader  
+- FOLLOWING：leader已经选举出来，当前Server与之同步  
+
+
+
+
 zookeeper中的每个节点称为一个znode，每个znode维持一个数据结构，其内容如下：  
-1、Version number − 版本号，当和该znode节点关联的数据发生变化时，版本号会自增1。  
-2、Action Control List (ACL) − 访问控制列表，znode的访问控制机制，它控制znode的所有读写操作。  
-3、Timestamp − znode创建时的时间戳，精确到毫秒。  
-4、Data length − znode节点存储数据的长度，最大1MB。  
-  
-  
-  
+- 1、Version number − 版本号，当和该znode节点关联的数据发生变化时，版本号会自增1。  
+- 2、Action Control List (ACL) − 访问控制列表，znode的访问控制机制，它控制znode的所有读写操作。  
+- 3、Timestamp − znode创建时的时间戳，精确到毫秒。  
+- 4、Data length − znode节点存储数据的长度，最大1MB。  
+
+
+
+
 读取操作：当Client向zookeeper发出读请求时，无论是Leader还是Follower，都直接返回查询结果。  
 写操作：  
-1、① 写入请求直接发送到leader节点：由Leader节点广播并返回结果给Client  
-2、② 写入请求发送到Follower节点：由Follower节点转发给Leader节点，处理后Leader返回结果给Follower，原来的Follower返回写入成功消息给Client；  
-  
-  
-Zookeeper的节点数据结构 和 节点类型
+- 1、① 写入请求直接发送到leader节点：由Leader节点广播并返回结果给Client  
+- 2、② 写入请求发送到Follower节点：由Follower节点转发给Leader节点，处理后Leader返回结果给Follower，原来的Follower返回写入成功消息给Client；  
+
+
+
+
+## Zookeeper的节点数据结构和节点类型
 
 znode有三种基本类型和两种组合类型：  
-1、Persistence znode 持久znode  
-2、Ephemeral znode − 临时znode  
-3、Sequential znode − 序列znode  
-  
+- 1、Persistence znode 持久znode  
+- 2、Ephemeral znode − 临时znode  
+- 3、Sequential znode − 序列znode  
+
 组合：  
-1、Persistence+Sequential znode，组合出的节点类型。  
-2、Ephemeral+Sequential znode，组合出的节点类型。  
-  
-  
-  
-Zookeeper的watch机制  
+- 1、Persistence+Sequential znode，组合出的节点类型。  
+- 2、Ephemeral+Sequential znode，组合出的节点类型。  
+
+
+
+
+## Zookeeper的watch机制
 
 ZooKeeper 的 Watcher 机制主要包括客户端线程、客户端 WatchManager 和 ZooKeeper 服务器三部分  
 1. 注册只能确保一次消费  
 2. 客户端串行执行  
 3. 轻量级设计：WatchedEvent 是 ZooKeeper 整个 Watcher 通知机制的最小通知单元，这个数据结构中只包含三部分的内容：通知状态、事件类型和节点路径。  
-  
-  
-  
-zookeeper的应用场景  
-1、zookeeper实现配置中心：应用监听对应路径下的配置即可  
-2、服务注册中心（服务发现）：服务提供者Provider向Zookeeper注册服务；服务消费者Consumer从zookeeper中查询服务和监听服务的变化，缓存服务信息到本地；调用远端的服务；  
-3、zookeeper集群选主：使用zookeeper的ephemeral+sequence类型的znode可以实现集群的选主功能，跟分布式锁类似  
-4、zookeeper实现分布式锁：创建一个ephemeral+sequence类型的znode，判断自己创建的znode是否序列最小，若是，则获的锁；若不是，在距离自己最近的前一个znode上设置一个watch，当获取到znode变更通知后  
-5、zookeeper集群系统管理：  
-  
-  
-  
-  
+
+
+
+## Zookeeper的应用场景
+- 1、zookeeper实现配置中心：应用监听对应路径下的配置即可  
+- 2、服务注册中心（服务发现）：服务提供者Provider向Zookeeper注册服务；服务消费者Consumer从zookeeper中查询服务和监听服务的变化，缓存服务信息到本地；调用远端的服务；  
+- 3、zookeeper集群选主：使用zookeeper的ephemeral+sequence类型的znode可以实现集群的选主功能，跟分布式锁类似  
+- 4、zookeeper实现分布式锁：创建一个ephemeral+sequence类型的znode，判断自己创建的znode是否序列最小，若是，则获的锁；若不是，在距离自己最近的前一个znode上设置一个watch，当获取到znode变更通知后  
+- 5、zookeeper集群系统管理：  
+
+
+
+
+## Zookeeper选举原理
 选举原理：事务id号（zxid）：高32位的epoch +    低32位用于递增计数  
 ZooKeeper 的非全新集群选主  
-1、逻辑时钟小的选举结果被忽略，重新投票  
-2、统一逻辑时钟后，数据 version 大的胜出  
-3、数据 version 相同的情况下，server id 大的胜出  
-  
-  
-  
-  
-  
+- 1、逻辑时钟小的选举结果被忽略，重新投票  
+- 2、统一逻辑时钟后，数据 version 大的胜出  
+- 3、数据 version 相同的情况下，server id 大的胜出  
+
+
+
+
 Zookeeper学习参考  
 https://www.jianshu.com/p/b48d50e1fcb1  
 https://www.cnblogs.com/qingyunzong/p/8632995.html  
@@ -124,12 +149,12 @@ https://blog.csdn.net/qiangcuo6087/article/details/79042035
 https://blog.csdn.net/wzk646795873/article/details/79706627  
   
 ---------------------------------------------------------------------------------------------------------------------    
-Zookeeper动态扩容  
+## Zookeeper动态扩容
 https://blog.csdn.net/levy_cui/article/details/70859355  
 https://cloud.tencent.com/developer/article/1119410  
   
-1、集群本来是单机模式，需要将它扩容成集群模式  
-2、集群本来就有>2台机器在运行，只是将它扩容成更多的机器  
+- 1、集群本来是单机模式，需要将它扩容成集群模式  
+- 2、集群本来就有>2台机器在运行，只是将它扩容成更多的机器  
   
 总的来说都是先部署新机器，再修改老机器配置文件重启。单机扩容集群短暂的停止服务，集群扩容集群是用户无感知的  
   
@@ -150,65 +175,12 @@ https://my.oschina.net/u/2277632/blog/1540809
   
   
 https://blog.csdn.net/xinguan1267/article/details/38422149  
-  
----------------------------------------------------------------------------------------------------------------------    
-Zookeeper常见问题  
-http://jm.taobao.org/2013/10/07/zookeeper-faq/  
-https://blog.csdn.net/u010185262/article/details/49910301  
-  
-1. 客户端对ServerList的轮询机制是什么？随机  
-2.客户端如何正确处理CONNECTIONLOSS(连接断开) 和 SESSIONEXPIRED(Session 过期)两类连接异常：  
-CONNECTIONLOSS(连接断开)：重连即可，Session还是存在的  
-SESSIONEXPIRED(Session 过期)：要重新实例zookeeper对象，重新操作所有临时数据（包括临时节点和注册Watcher）。  
-服务器认为这个session已经结束了（服务器无法确认是因为其它异常原因还是客户端主动结束会话），开始清除和这个会话有关的信息，包括这个会话创建的临时节点和注册的Watcher。  
-  
-  
-3. 不同的客户端对同一个节点是否能获取相同的数据  
-4、一个客户端修改了某个节点的数据，其它客户端能够马上获取到这个最新数据吗  
-ZooKeeper不能确保任何客户端能够获取（即Read Request）到一样的数据，这个是实际存在的现象，当然延时很短。除非客户端自己要求，解决的方法是客户端B先调用 sync(), 再调用 getData().  
-  
-  
-5. ZK为什么不提供一个永久性的Watcher注册机制  
-不支持用持久Watcher的原因很简单，ZK无法保证性能。  
-  
-6. 使用watch需要注意的几点  
-a. Watches通知是一次性的，必须重复注册.  
-b. 发生CONNECTIONLOSS之后，只要在session_timeout之内再次连接上（即不发生SESSIONEXPIRED），那么这个连接注册的watches依然在。  
-c. 节点数据的版本变化会触发NodeDataChanged，注意，这里特意说明了是版本变化。存在这样的情况，只要成功执行了setData()方法，无论内容是否和之前一致，都会触发NodeDataChanged。  
-d. 对某个节点注册了watch，但是节点被删除了，那么注册在这个节点上的watches都会被移除。  
-e. 同一个zk客户端对某一个节点注册相同的watch，只会收到一次通知。  
-f. Watcher对象只会保存在客户端，不会传递到服务端。  
-  
-  
-7.我能否收到每次节点变化的通知  
-不能，一般如果节点数据的更新频率很高的话，是没有问题的  
-原因在于：当一次数据修改，通知客户端，客户端再次注册watch，在这个过程中，可能数据已经发生了许多次数据修改  
-  
-8.能为临时节点创建子节点吗？不能。  
-  
-9. 是否可以拒绝单个IP对ZK的访问,操作  
-ZK本身不提供这样的功能，它仅仅提供了对单个IP的连接数的限制。你可以通过修改iptables来实现对单个ip的限制，当然，你也可以通过这样的方式来解决。https://issues.apache.org/jira/browse/ZOOKEEPER-1320  
-  
-10. 在getChildren(String path, boolean watch)是注册了对节点子节点的变化，那么子节点的子节点变化能通知吗？不能  
-  
-11.创建的临时节点什么时候会被删除，是连接一断就删除吗？延时是多少？  
-连接断了之后，ZK不会马上移除临时数据，只有当SESSIONEXPIRED之后，才会把这个会话建立的临时数据移除。因此，用户需要谨慎设置Session_TimeOut  
-  
-  
-12. zookeeper是否支持动态进行机器扩容？如果目前不支持，那么要如何扩容呢？  
-已经支持了，总的来说都是先部署新机器，再修改老机器配置文件重启。单机扩容集群短暂的停止服务，集群扩容集群是用户无感知的  
-截止2012-03-15，3.4.3版本的zookeeper，还不支持这个功能，在3.5.0版本开始，支持动态加机器了，期待下吧: https://issues.apache.org/jira/browse/ZOOKEEPER-107  
-  
-  
-13. ZooKeeper集群中个服务器之间是怎样通信的？  
-Leader服务器会和每一个Follower/Observer服务器都建立TCP连接，同时为每个F/O都创建一个叫做LearnerHandler的实体。LearnerHandler主要负责Leader和F/O之间的网络通讯，包括数据同步，请求转发和Proposal提议的投票等。Leader服务器保存了所有F/O的LearnerHandler。  
-  
-14.zookeeper是否会自动进行日志清理？如果进行日志清理？  
-zk自己不会进行日志清理，需要运维人员进行日志清理，详细关于zk的日志清理，可以查看《ZooKeeper日志清理》  
-  
-  
+
+
+
 ---------------------------------------------------------------------------------------------------------------------  
-zookeeper：Watcher、ZK状态，事件类型（一）  
+## Zookeeper：Watcher、ZK状态，事件类型
+
 zookeeper有watch事件，是一次性触发的，当watch监视的数据发生变化时，通知设置了该watch的client.即watcher.  
 同样：其watcher是监听数据发送了某些变化，那就一定会有对应的事件类型和状态类型。  
 	事件类型:(znode节点相关的)  
@@ -221,8 +193,13 @@ zookeeper有watch事件，是一次性触发的，当watch监视的数据发生�
  		 KeeperState:SyncConnected	//连接成功	   
 		 KeeperState:AuthFailed         //认证失败  
 		 KeeperState:Expired            //会话过期  
-  
-zookeeper的ACL权限控制(AUTH)  
+
+
+
+
+
+## Zookeeper的ACL权限控制(AUTH)
+
 ACL(Access Control List),Zookeeper作为一个分布式协调框架，其内部存储的都是一些关于分布式  
 系统运行时状态的元数据，尤其是设计到一些分布式锁，Master选举和协调等应用场景。我们需要有  
 效地保障Zookeeper中的数据安全，Zookeeper提供了三种模式。权限模式，授权对象，权限。  
@@ -293,13 +270,13 @@ https://blog.csdn.net/qq_17089617/article/details/77959377
   
   
   
-利用zookeeper能做啥  
+## 利用zookeeper能做啥  
 https://blog.csdn.net/yuzuyi2006/article/details/80009752  
   
-1.使用zookeeper 实现动态维护服务列表（名字服务）  
-2.使用zookeeper实现配置管理  
-3．使用zookeeper分布式锁  
-4.使用zookeeper集群管理  
+1. 使用zookeeper 实现动态维护服务列表（名字服务）  
+2. 使用zookeeper实现配置管理  
+3. 使用zookeeper分布式锁  
+4. 使用zookeeper集群管理  
   
   
   
@@ -309,15 +286,18 @@ https://blog.csdn.net/lilong329329/article/details/78620382
   
   
 ---------------------------------------------------------------------------------------------------------------------  
-  
-ZK总结  
+
+## Zookeeper常见问题总结
 https://www.cnblogs.com/Desneo/p/7212114.html  
 https://blog.csdn.net/yjp198713/article/details/79400927  
 https://www.cnblogs.com/netoxi/p/7291214.html  
+http://jm.taobao.org/2013/10/07/zookeeper-faq/  
+https://blog.csdn.net/u010185262/article/details/49910301  
   
 Zookeeper：Client缺点：api复杂，节点只能一级一级创建，Watcher一次性的，只能监听直接子节点  
 http://jm.taobao.org/2013/10/07/zookeeper-faq/  
 1. 客户端对ServerList的轮询机制是什么？随机  
+
 2.客户端如何正确处理CONNECTIONLOSS(连接断开) 和 SESSIONEXPIRED(Session 过期)两类连接异常：  
 CONNECTIONLOSS(连接断开)：重连即可，Session还是存在的  
 SESSIONEXPIRED(Session 过期)：要重新实例zookeeper对象，重新操作所有临时数据（包括临时节点和注册Watcher）。  
@@ -365,25 +345,66 @@ Leader服务器会和每一个Follower/Observer服务器都建立TCP连接，同
   
 14.zookeeper是否会自动进行日志清理？如果进行日志清理？  
 zk自己不会进行日志清理，需要运维人员进行日志清理，详细关于zk的日志清理，可以查看《ZooKeeper日志清理》  
-  
-  
-Zookeeper脑裂是什么原因导致这样情况的出现呢？   
-集群发现master挂掉（网络导致的假死），进行master切换，并且通知client，切换和通知client都需要时间，导致有的client连接到老的master，有的连接到新的master，此时连接不同master的client更新，就导致数据不一致，  
-主要原因是Zookeeper集群和Zookeeper client判断超时并不能做到完全同步，也就是说可能一前一后，如果是集群先于client发现那就会出现上面的情况。同时，在发现并切换后通知各个客户端也有先后快慢。一般出现这种情况的几率很小，需要master与Zookeeper集群网络断开但是与其他集群角色之间的网络没有问题，还要满足上面那些情况，但是一旦出现就会引起很严重的后果，数据不一致。  
-如何避免？   
-在slaver切换的时候不在检查到老的master出现问题后马上切换，而是在休眠一段足够的时间，确保老的master已经获知变更并且做了相关的shutdown清理工作了然后再注册成为master就能避免这类问题了，这个休眠时间一般定义为与Zookeeper定义的超时时间就够了，但是这段时间内系统不可用了。  
-  
+
+
+
+
 ---------------------------------------------------------------------------------------------------------------------  
 
-为什么最好使用奇数台服务器构成 ZooKeeper 集群？   
+## Zookeeper脑裂是什么原因导致这样情况的出现呢
+集群发现master挂掉（网络导致的假死），进行master切换，并且通知client，切换和通知client都需要时间，导致有的client连接到老的master，有的连接到新的master，此时连接不同master的client更新，就导致数据不一致，  
+
+主要原因是Zookeeper集群和Zookeeper client判断超时并不能做到完全同步，也就是说可能一前一后，如果是集群先于client发现那就会出现上面的情况。同时，在发现并切换后通知各个客户端也有先后快慢。一般出现这种情况的几率很小，需要master与Zookeeper集群网络断开但是与其他集群角色之间的网络没有问题，还要满足上面那些情况，但是一旦出现就会引起很严重的后果，数据不一致。  
+
+如何避免？  
+在slaver切换的时候不在检查到老的master出现问题后马上切换，而是在休眠一段足够的时间，确保老的master已经获知变更并且做了相关的shutdown清理工作了然后再注册成为master就能避免这类问题了，这个休眠时间一般定义为与Zookeeper定义的超时时间就够了，但是这段时间内系统不可用了。  
+
+
+---------------------------------------------------------------------------------------------------------------------  
+## 为什么最好使用奇数台服务器构成ZooKeeper集群
+
+采用奇数个的节点主要是出于两方面的考虑：
+- 1、防止由脑裂造成的集群不可用。
+- 2、在容错能力相同的情况下，奇数台更节省资源。
+
+
 所谓的zookeeper容错是指，当宕掉几个zookeeper服务器之后，剩下的个数必须大于宕掉的个数的话整个zookeeper才依然可用。  
-假如我们的集群中有n台zookeeper服务器，那么也就是剩下的服务数必须大于n/2。 
+假如我们的集群中有n台zookeeper服务器，那么也就是剩下的服务数必须大于n/2。  
 先说一下结论，2n和2n-1的容忍度是一样的，都是n-1    
 所以何必增加那一个不必要的zookeeper呢？  
 
 
 
+
+参考
+https://blog.csdn.net/adorechen/article/details/82791280
+
+
+
 ---------------------------------------------------------------------------------------------------------------------  
+
+## ZooKeeper可视化管理工具
+- Zkdash框架
+- TaoKeeper框架
+- zkweb
+
+
+
+Zkdash框架
+
+zkdash是一个 zookeeper 的管理界面，也可以作为任何基于 zookeeper 的配置管理项目比如：Qconf。
+
+zkdash ＝ zookeeper dashbord，由掌阅科技开发。
+
+zkdash 使用 python Tornado 开发，目前dashbord支持管理多个zookeeper集群，支持配置快照，支持QConf等
+
+
+
+
+TaoKeeper框架
+
+[TaoKeeper Github](https://github.com/alibaba/taokeeper)  
+[zookeeper监控告警](https://cloud.tencent.com/developer/article/1021121)  
 
 
 
