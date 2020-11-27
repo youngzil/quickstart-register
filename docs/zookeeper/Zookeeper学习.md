@@ -282,7 +282,7 @@ https://blog.csdn.net/yuzuyi2006/article/details/80009752
   
 zookeeper的选主机制的实现过程以及原理  
 https://blog.csdn.net/lilong329329/article/details/78620382  
-  
+[简单使用 ZooKeeper 实现集群主备切换](https://blog.csdn.net/Dongguabai/article/details/105940409)  
   
   
 ---------------------------------------------------------------------------------------------------------------------  
@@ -360,6 +360,11 @@ zk自己不会进行日志清理，需要运维人员进行日志清理，详细
 在slaver切换的时候不在检查到老的master出现问题后马上切换，而是在休眠一段足够的时间，确保老的master已经获知变更并且做了相关的shutdown清理工作了然后再注册成为master就能避免这类问题了，这个休眠时间一般定义为与Zookeeper定义的超时时间就够了，但是这段时间内系统不可用了。  
 
 
+
+参考  
+[Zookeeper集群"脑裂"问题 - 运维总结](https://www.cnblogs.com/kevingrace/p/12433503.html)  
+
+
 ---------------------------------------------------------------------------------------------------------------------  
 ## 为什么最好使用奇数台服务器构成ZooKeeper集群
 
@@ -374,10 +379,9 @@ zk自己不会进行日志清理，需要运维人员进行日志清理，详细
 所以何必增加那一个不必要的zookeeper呢？  
 
 
-
-
-参考
-https://blog.csdn.net/adorechen/article/details/82791280
+参考  
+[Zookeeper集群节点数量为什么要是奇数个？](https://blog.csdn.net/adorechen/article/details/82791280)  
+[Zookeeper集群"脑裂"问题 - 运维总结](https://www.cnblogs.com/kevingrace/p/12433503.html)  
 
 
 
