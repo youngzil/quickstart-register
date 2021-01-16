@@ -128,12 +128,14 @@ ZooKeeper 的 Watcher 机制主要包括客户端线程、客户端 WatchManager
 - 4、zookeeper实现分布式锁：创建一个ephemeral+sequence类型的znode，判断自己创建的znode是否序列最小，若是，则获的锁；若不是，在距离自己最近的前一个znode上设置一个watch，当获取到znode变更通知后  
 - 5、zookeeper集群系统管理：  
 
+zk的用途：1.命名服务 2.配置管理 3.集群管理 4.分布式锁 5.队列管理
+
 
 
 
 ## Zookeeper选举原理
-选举原理：事务id号（zxid）：高32位的epoch +    低32位用于递增计数  
-ZooKeeper 的非全新集群选主  
+选举原理：事务id号（zxid）：高32位的epoch+低32位用于递增计数  
+ZooKeeper的非全新集群选主
 - 1、逻辑时钟小的选举结果被忽略，重新投票  
 - 2、统一逻辑时钟后，数据 version 大的胜出  
 - 3、数据 version 相同的情况下，server id 大的胜出  
