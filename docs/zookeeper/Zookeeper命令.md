@@ -30,6 +30,8 @@
 集群方式
 bin/zkCli.sh -server 10.11.20.101:2181,10.11.20.103:2181,10.1.226.100:2181
 
+zkCli -server 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
+
 连接
 sh bin/zkCli.sh -server 127.0.0.1:2181
 
@@ -72,4 +74,6 @@ ZooKeeper命令行工具类似于Linux的shell环境，不过功能肯定不及s
 11. echo wchp | nc 127.0.0.1 2181 ,通过路径列出服务器 watch 的详细信息。它输出一个与 session 相关的路径。
 
 
+
+[命令行zkCli.sh使用指南](https://blog.csdn.net/ganglia/article/details/11606807)  
 

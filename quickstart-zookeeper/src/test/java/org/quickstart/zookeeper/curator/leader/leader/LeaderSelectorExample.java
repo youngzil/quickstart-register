@@ -1,4 +1,4 @@
-package org.quickstart.zookeeper.curator.demo.leader;
+package org.quickstart.zookeeper.curator.leader.leader;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,19 +6,25 @@ import java.util.List;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.utils.CloseableUtils;
-import org.quickstart.zookeeper.curator.demo.utils.ClientFactory;
+import org.quickstart.zookeeper.curator.framework.ClientFactory;
 
 import com.google.common.collect.Lists;
 
-public class LeaderLatchExample {
+/**
+ * leader选举
+ * 
+ * @author shencl
+ */
+public class LeaderSelectorExample {
+
     public static void main(String[] args) {
 
         List<CuratorFramework> clients = Lists.newArrayList();
-        List<LeaderLatchClient> examples = Lists.newArrayList();
+        List<LeaderSelectorClient> examples = Lists.newArrayList();
         try {
             for (int i = 0; i < 10; i++) {
                 CuratorFramework client = ClientFactory.newClient();
-                LeaderLatchClient example = new LeaderLatchClient(client, "Client #" + i);
+                LeaderSelectorClient example = new LeaderSelectorClient(client, "Client #" + i);
                 clients.add(client);
                 examples.add(example);
 
@@ -33,13 +39,13 @@ public class LeaderLatchExample {
                 clients.get(i).close();
             }
 
-            // 让main程序一直监听控制台输入，不退出
+            // 这里有个小技巧，让main程序一直监听控制台输入，异步的代码就可以一直在执行。不同于while(ture)的是，按回车或esc可退出
             new BufferedReader(new InputStreamReader(System.in)).readLine();
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            for (LeaderLatchClient exampleClient : examples) {
+            for (LeaderSelectorClient exampleClient : examples) {
                 CloseableUtils.closeQuietly(exampleClient);
             }
             for (CuratorFramework client : clients) {

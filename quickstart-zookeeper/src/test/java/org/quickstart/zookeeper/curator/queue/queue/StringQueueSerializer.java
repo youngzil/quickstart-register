@@ -1,4 +1,4 @@
-package org.quickstart.zookeeper.curator.demo.queue;
+package org.quickstart.zookeeper.curator.queue.queue;
 
 import java.nio.charset.Charset;
 

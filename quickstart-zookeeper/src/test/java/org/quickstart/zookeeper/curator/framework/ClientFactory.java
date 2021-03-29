@@ -1,4 +1,4 @@
-package org.quickstart.zookeeper.curator.demo.utils;
+package org.quickstart.zookeeper.curator.framework;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;

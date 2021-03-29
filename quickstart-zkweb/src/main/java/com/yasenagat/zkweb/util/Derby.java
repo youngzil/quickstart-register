@@ -1,17 +1,20 @@
 package com.yasenagat.zkweb.util;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by jiashiran on 2016/12/22.
  */
-public class Derby{
+public class Derby {
     private static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
     private static String protocol = "jdbc:derby:";
 
-    String dbName = "/Users/yangzl/export/db";
+    String dbName = System.getProperty("user.home") + "/export/db";
 
-    public Derby(){
+    public Derby() {
         try {
             Class.forName(driver).newInstance();
             System.out.println("Loaded the appropriate driver");
@@ -26,8 +29,11 @@ public class Derby{
     }
 
     public static void main(String[] args) {
+
+        System.out.println( System.getProperty("user.home") + "/export/db");
+
         Derby derby = new Derby();
-        try (Connection con = derby.getConnection()){
+        try (Connection con = derby.getConnection()) {
             Statement sta = con.createStatement();
             //sta.execute("CREATE TABLE ZK(ID VARCHAR(100) PRIMARY KEY, DES VARCHAR(100), CONNECTSTR VARCHAR(100), SESSIONTIMEOUT VARCHAR(100))");
             sta.execute("DROP TABLE ZK");

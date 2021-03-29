@@ -413,6 +413,23 @@ TaoKeeper框架
 [zookeeper监控告警](https://cloud.tencent.com/developer/article/1021121)  
 
 
+---------------------------------------------------------------------------------------------------------------------  
+
+ZooKeeper避免羊群效应（Herd Effect）
+
+一般的分布式锁实现
+
+这里简单的讲下一般的分布式锁如何实现。具体的代码实现可以在这里看到： https://svn.apache.org/repos/asf/zookeeper/trunk/src/recipes/lock/
 
 
+distributed lock with zookeeper. how to avoid repeatly check the min node
+
+多次通知，重复检验Node
+
+
+
+[【ZooKeeper Notes 16】避免羊群效应（Herd Effect）](https://developer.aliyun.com/article/427024)  
+[Zookeeper隐藏通道和羊群效应](https://blog.csdn.net/u013468915/article/details/80980116)  
+
+[ZooKeeper Recipes and Solutions](https://zookeeper.apache.org/doc/r3.4.5/recipes.html)  
 

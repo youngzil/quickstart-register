@@ -1,4 +1,4 @@
-package org.quickstart.zookeeper.curator.demo.locks;
+package org.quickstart.zookeeper.curator.lock.locks;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessLock;
 import org.apache.curator.framework.recipes.locks.InterProcessReadWriteLock;
 import org.apache.curator.utils.CloseableUtils;
-import org.quickstart.zookeeper.curator.demo.utils.ClientFactory;
+import org.quickstart.zookeeper.curator.framework.ClientFactory;
 
 import com.google.common.collect.Lists;
 

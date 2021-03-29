@@ -1,10 +1,10 @@
-package org.quickstart.zookeeper.curator.demo.queue;
+package org.quickstart.zookeeper.curator.queue.queue;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.queue.DistributedQueue;
 import org.apache.curator.framework.recipes.queue.QueueBuilder;
 import org.apache.curator.framework.recipes.queue.QueueConsumer;
-import org.quickstart.zookeeper.curator.demo.utils.ClientFactory;
+import org.quickstart.zookeeper.curator.framework.ClientFactory;
 
 public class StringQueueClient {
 

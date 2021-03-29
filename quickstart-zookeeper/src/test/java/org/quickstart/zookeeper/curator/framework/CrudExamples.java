@@ -1,9 +1,8 @@
-package org.quickstart.zookeeper.curator.demo.framework;
+package org.quickstart.zookeeper.curator.framework;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.utils.CloseableUtils;
 import org.apache.zookeeper.data.Stat;
-import org.quickstart.zookeeper.curator.demo.utils.ClientFactory;
 
 /**
  * 增删改查

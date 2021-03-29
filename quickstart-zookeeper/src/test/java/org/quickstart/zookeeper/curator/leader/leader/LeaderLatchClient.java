@@ -1,4 +1,4 @@
-package org.quickstart.zookeeper.curator.demo.leader;
+package org.quickstart.zookeeper.curator.leader.leader;
 
 import java.io.Closeable;
 import java.io.IOException;

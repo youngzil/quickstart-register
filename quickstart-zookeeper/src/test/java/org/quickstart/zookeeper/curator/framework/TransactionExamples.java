@@ -1,4 +1,4 @@
-package org.quickstart.zookeeper.curator.demo.framework;
+package org.quickstart.zookeeper.curator.framework;
 
 import java.util.Collection;
 
@@ -6,7 +6,6 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.api.transaction.CuratorTransaction;
 import org.apache.curator.framework.api.transaction.CuratorTransactionResult;
 import org.apache.curator.utils.CloseableUtils;
-import org.quickstart.zookeeper.curator.demo.utils.ClientFactory;
 
 /**
  * 事务操作

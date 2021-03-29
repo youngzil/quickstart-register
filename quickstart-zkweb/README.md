@@ -12,6 +12,7 @@ https://github.com/zhitom/zkweb
 
 
 # 使用
+
 打包
 mvn -DskipTests clean install -U
 
@@ -25,9 +26,14 @@ sh startup.sh
 ./shutdown.sh
 
 
+使用脚本部署
+
+sh deploy.sh
+
+
+
 访问
 http://localhost:8080/zkWeb-1.0/
-
 
 
 

@@ -16,7 +16,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <zookeeper.version>3.6.2</zookeeper.version>
+    <zookeeper.version>3.7.0</zookeeper.version>
     <zkclient.version>0.11</zkclient.version>
     <curator.version>5.1.0</curator.version>
   </properties>

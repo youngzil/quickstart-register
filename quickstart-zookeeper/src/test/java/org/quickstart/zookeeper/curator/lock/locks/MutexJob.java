@@ -1,4 +1,4 @@
-package org.quickstart.zookeeper.curator.demo.locks;
+package org.quickstart.zookeeper.curator.lock.locks;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
