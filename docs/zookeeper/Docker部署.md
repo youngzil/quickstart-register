@@ -207,6 +207,8 @@ bash-4.4# ./bin/zkServer.sh status
 
 ---------------------------------------------------------------------------------------------------------------------
 
+[Docker docker-compose安装zookeeper单节点](https://www.ytooo.top/98d98f75.html)  
+
 
 参考  
 [Zookeeper——Docker下安装部署](https://my.oschina.net/u/4395639/blog/4073233)  

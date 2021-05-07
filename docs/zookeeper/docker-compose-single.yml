@@ -1,0 +1,21 @@
+#docker-compose -f docker-compose-single.yml up -d
+
+version: '3'
+services:
+  zookeeper:
+    image: zookeeper
+    restart: always
+    container_name: singlezookeeper
+    volumes:
+#      - /Users/lengfeng/zookeeper/conf:/conf
+      - /Users/lengfeng/zookeeper/data:/data
+      - /Users/lengfeng/zookeeper/datalog:/datalog
+      - /Users/lengfeng/zookeeper/logs:/logs
+#      - ./config:/conf
+#      - ./data:/data
+#      - ./datalog:/datalog
+#      - ./logs:/logs
+    ports:
+      - "2181:2181"
+    environment:
+      - TZ=Asia/Shanghai # 设置容器时区与宿主机保持一致
