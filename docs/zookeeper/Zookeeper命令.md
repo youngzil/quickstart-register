@@ -19,6 +19,10 @@
 /opt/zookeeper-3.4.10
 
 
+查看ZK版本
+echo stat|nc localhost 2181
+
+
 
 ## Zookeeper命令连接（zk客户端命令）
 
@@ -31,6 +35,7 @@
 bin/zkCli.sh -server 10.11.20.101:2181,10.11.20.103:2181,10.1.226.100:2181
 
 zkCli -server 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
+zkCli -server 172.16.48.179:2181,172.16.48.180:2181,172.16.48.181:2181
 
 连接
 sh bin/zkCli.sh -server 127.0.0.1:2181
@@ -76,4 +81,4 @@ ZooKeeper命令行工具类似于Linux的shell环境，不过功能肯定不及s
 
 
 [命令行zkCli.sh使用指南](https://blog.csdn.net/ganglia/article/details/11606807)  
-
+[看完这篇文章，还说自己不会使用Zookeeper命令吗](https://cloud.tencent.com/developer/article/1691455)  
