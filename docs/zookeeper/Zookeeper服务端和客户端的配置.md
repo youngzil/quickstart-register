@@ -22,8 +22,10 @@ autopurge.purgeInterval: 和参数 autopurge.snapRetainCount 配套使用, 用�
 
 
 
-参考
-https://www.jianshu.com/p/5e012efb2d82
+参考  
+[ZooKeeper配置和学习笔记](https://www.jianshu.com/p/5e012efb2d82)  
+[zookeeper配置文件详解](https://www.cnblogs.com/linjiqin/archive/2013/03/16/2963439.html)  
+[ZooKeeper配置文件常用配置项一览表](https://www.cnblogs.com/easonjim/p/7483880.html)  
 
 ---------------------------------------------------------------------------------------------------------------------  
 ## 客户端配置项
