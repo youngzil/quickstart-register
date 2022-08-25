@@ -7,9 +7,21 @@
 ## 单节点安装
 
 
+启动zookeeper
+
+docker pull zookeeper
+
+docker run -d -e TZ="Asia/Shanghai" -p 2181:2181 --name zookeeper --restart always zookeeper
+
+
+
 拉取镜像
 docker pull zookeeper
 默认是摘取最新版本 zookeeper:latest。
+
+
+默认的
+docker run -d -e TZ="Asia/Shanghai" -p 2181:2181 --name zookeeper --restart always zookeeper
 
 
 将它部署在 /usr/local/zookeeper 目录下：

@@ -3,6 +3,8 @@ Consul
 
 [Consul官网](https://www.consul.io/)  
 [Consul Github](https://github.com/hashicorp/consul)  
+[Consul教程Tutorials](https://learn.hashicorp.com/consul)
+[Consul文档](https://www.consul.io/docs)
 
 
 [升级Consul文档指导](https://www.consul.io/docs/upgrading.html)

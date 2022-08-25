@@ -5,12 +5,44 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.leader.LeaderLatch;
 import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class LeaderLatchTest {
     static int CLINET_COUNT = 10;
     static String LOCK_PATH = "/leader_latch";
+
+    @Test
+    public void testLeaderLatch() throws Exception {
+        List<CuratorFramework> clientsList = Lists.newArrayListWithCapacity(CLINET_COUNT);
+        List<LeaderLatch> leaderLatchList = Lists.newArrayListWithCapacity(CLINET_COUNT);
+
+        //创建10个zk客户端模拟leader选举
+        for (int i = 0; i < CLINET_COUNT; i++) {
+            CuratorFramework client = getZkClient();
+            clientsList.add(client);
+
+            System.out.println("LeaderLatch" + i);
+
+            LeaderLatch leaderLatch = new LeaderLatch(client, LOCK_PATH, "CLIENT_" + i);
+            leaderLatchList.add(leaderLatch);
+
+            new Thread(() -> {
+                //必须调用start()方法来进行抢主
+                try {
+                    leaderLatch.start();
+                    leaderLatch.await();
+                    System.out.println(leaderLatch.getId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+
+        System.in.read();
+
+    }
 
     public static void main(String[] args) throws Exception {
         List<CuratorFramework> clientsList = Lists.newArrayListWithCapacity(CLINET_COUNT);
@@ -38,7 +70,7 @@ public class LeaderLatchTest {
             if (leaderLatch.hasLeadership()) {
                 System.out.println("当前leader:" + leaderLatch.getId());
                 //释放leader权限 重新进行抢主
-                leaderLatch.close();
+                // leaderLatch.close();
                 checkLeader(leaderLatchList);
             }
         }
